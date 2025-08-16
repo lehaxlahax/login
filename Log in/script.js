@@ -18,6 +18,7 @@ window.addEventListener('load', () => {
             splashScreen.style.display = 'none';
         });
 
-    }, 3000); // Délai de 3 secondes
+    }, 2000); // Délai de 2 secondes
+
 
 });
